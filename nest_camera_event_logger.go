@@ -26,14 +26,11 @@ func logNestCamEvent(nestCamResponse NestCameraResponse) {
 	var existingEvent NestCameraEvent
 	timeFormat := "2006-01-02 15:04:05"
 	startTimeStr := nestCamResponse.NestCameraEvent.StartTime.Format(timeFormat)
-	endTimeStr := nestCamResponse.NestCameraEvent.EndTime.Format(timeFormat)
 	startTime, err := time.Parse(timeFormat, startTimeStr)
-	endTime, err := time.Parse(timeFormat, endTimeStr)
-	notFound := db.Where(&NestCameraEvent{StartTime: startTime, EndTime: endTime}).First(&existingEvent).RecordNotFound()
+	notFound := db.Where(&NestCameraEvent{StartTime: startTime}).First(&existingEvent).RecordNotFound()
 	if notFound {
 		nestCamResponse.NestCameraEvent.StartTime = startTime
-		nestCamResponse.NestCameraEvent.EndTime = endTime
-		log.Printf("Event logged | Start: %s | End: %s\n", startTimeStr, endTimeStr)
+		log.Printf("Event logged | Start: %s", startTimeStr)
 		db.Create(&nestCamResponse.NestCameraEvent)
 	}
 }

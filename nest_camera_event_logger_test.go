@@ -44,7 +44,7 @@ func Test_logNestCamEvent(t *testing.T) {
 			HasMotion:        true,
 			HasPerson:        false,
 			StartTime:        eventTime,
-			EndTime:          eventTime,
+			EndTime:          &eventTime,
 			UrlsExpireTime:   eventTime,
 			WebURL:           "www.nest.com",
 			AppURL:           "www.nest.com",
@@ -100,9 +100,8 @@ func Test_logNestCamEvent(t *testing.T) {
 		t.Errorf("Expected 1 camera event, got %v", count)
 	}
 
-	// Unique by StartDate and EndDate
+	// Unique by StartDate
 	exampleNestCameraResponse.NestCameraEvent.StartTime = time.Now()
-	exampleNestCameraResponse.NestCameraEvent.EndTime = time.Now()
 
 	logNestCamEvent(exampleNestCameraResponse)
 	var secondNestCamEvent NestCameraEvent
