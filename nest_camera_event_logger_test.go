@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	"io/ioutil"
 	"os"
 	"testing"
 	"time"
@@ -19,44 +21,12 @@ func TestMain(m *testing.M) {
 }
 
 func Test_logNestCamEvent(t *testing.T) {
-	timeLayout := "2006-01-02T15:04:05.000Z"
-	timeStr := "2017-08-30T19:43:37.000Z"
-	eventTime, err := time.Parse(timeLayout, timeStr)
-
+	jsonExample, err := ioutil.ReadFile("fixtures/nest_camera_response.json")
 	if err != nil {
-		t.Error(err)
+		panic(err)
 	}
-
-	exampleNestCameraResponse := NestCameraResponse{
-		Name:                  "Family Room",
-		SoftwareVersion:       "205-600055",
-		WhereID:               "12345",
-		DeviceID:              "12345",
-		StructureID:           "12345",
-		IsOnline:              true,
-		IsStreaming:           true,
-		IsAudioInputEnabled:   true,
-		LastIsOnlineChange:    eventTime,
-		IsVideoHistoryEnabled: true,
-		IsPublicShareEnabled:  false,
-		NestCameraEvent: NestCameraEvent{
-			HasSound:         false,
-			HasMotion:        true,
-			HasPerson:        false,
-			StartTime:        eventTime,
-			EndTime:          &eventTime,
-			UrlsExpireTime:   eventTime,
-			WebURL:           "www.nest.com",
-			AppURL:           "www.nest.com",
-			ImageURL:         "www.nest.com",
-			AnimatedImageURL: "www.nest.com",
-		},
-		WhereName:   "12345",
-		NameLong:    "1234555",
-		WebURL:      "www.nest.com",
-		AppURL:      "www.nest.com",
-		SnapshotURL: "www.nest.com",
-	}
+	var exampleNestCameraResponse NestCameraResponse
+	json.Unmarshal(jsonExample, &exampleNestCameraResponse)
 
 	logNestCamEvent(exampleNestCameraResponse)
 
@@ -77,6 +47,13 @@ func Test_logNestCamEvent(t *testing.T) {
 		t.Errorf("Expected 1 camera event, got %v", count)
 	}
 
+	timeLayout := "2006-01-02T15:04:05.000Z"
+	timeStr := "2017-08-30T19:43:37.000Z"
+	expectedEventTime, err := time.Parse(timeLayout, timeStr)
+	if err != nil {
+		t.Error(err)
+	}
+
 	if firstNestCamEvent.HasSound != false {
 		t.Errorf("Expected %v got %v", false, firstNestCamEvent.HasSound)
 	}
@@ -86,8 +63,8 @@ func Test_logNestCamEvent(t *testing.T) {
 	if firstNestCamEvent.HasPerson != false {
 		t.Errorf("Expected %v got %v", false, firstNestCamEvent.HasPerson)
 	}
-	if !firstNestCamEvent.StartTime.Equal(eventTime) {
-		t.Errorf("Expected %v got %v", eventTime, firstNestCamEvent.StartTime)
+	if !firstNestCamEvent.StartTime.Equal(expectedEventTime) {
+		t.Errorf("Expected %v got %v", expectedEventTime, firstNestCamEvent.StartTime)
 	}
 	if firstNestCamEvent.WebURL != "www.nest.com" {
 		t.Errorf("Expected %v got %v", "www.nest.com", firstNestCamEvent.WebURL)
@@ -102,7 +79,6 @@ func Test_logNestCamEvent(t *testing.T) {
 
 	// Unique by StartDate
 	exampleNestCameraResponse.NestCameraEvent.StartTime = time.Now()
-
 	logNestCamEvent(exampleNestCameraResponse)
 	var secondNestCamEvent NestCameraEvent
 	db.Model(&secondNestCamEvent).Count(&count)
