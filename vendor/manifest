@@ -26,6 +26,14 @@
 			"notests": true
 		},
 		{
+			"importpath": "github.com/golang/lint",
+			"repository": "https://github.com/golang/lint",
+			"vcs": "git",
+			"revision": "f635bddafc7154957bd70209ee858a4b97e64a9b",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "github.com/jinzhu/gorm",
 			"repository": "https://github.com/jinzhu/gorm",
 			"vcs": "git",
@@ -163,6 +171,33 @@
 			"revision": "e19ae1496984b1c655b8044a65c0300a3c878dd3",
 			"branch": "master",
 			"path": "unicode/cldr",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/tools/go/gcexportdata",
+			"repository": "https://go.googlesource.com/tools",
+			"vcs": "git",
+			"revision": "f271d7a0f8cf389f3ee4f6bf8d68e716a60ea571",
+			"branch": "master",
+			"path": "/go/gcexportdata",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/tools/go/gcimporter15",
+			"repository": "https://go.googlesource.com/tools",
+			"vcs": "git",
+			"revision": "f271d7a0f8cf389f3ee4f6bf8d68e716a60ea571",
+			"branch": "master",
+			"path": "go/gcimporter15",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/tools/go/types/typeutil",
+			"repository": "https://go.googlesource.com/tools",
+			"vcs": "git",
+			"revision": "f271d7a0f8cf389f3ee4f6bf8d68e716a60ea571",
+			"branch": "master",
+			"path": "go/types/typeutil",
 			"notests": true
 		},
 		{

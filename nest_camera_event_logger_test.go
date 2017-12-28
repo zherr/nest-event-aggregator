@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"io/ioutil"
 	"os"
 	"testing"
@@ -13,9 +13,21 @@ import (
 const dbEndpoint = "host=localhost user=postgres dbname=postgres sslmode=disable password="
 
 func TestMain(m *testing.M) {
-	err := os.Setenv("NEST_DB_ENDPOINT", dbEndpoint)
+	err := os.Setenv("NEST_DB_HOST", "localhost")
 	if err != nil {
-		panic("Unable to set NEST_DB_ENDPOINT for test")
+		panic(err)
+	}
+	err = os.Setenv("NEST_DB_NAME", "postgres")
+	if err != nil {
+		panic(err)
+	}
+	err = os.Setenv("NEST_DB_USER", "postgres")
+	if err != nil {
+		panic(err)
+	}
+	err = os.Setenv("NEST_DB_PASSWORD", "password")
+	if err != nil {
+		panic(err)
 	}
 	os.Exit(m.Run())
 }
@@ -30,7 +42,6 @@ func Test_logNestCamEvent(t *testing.T) {
 
 	logNestCamEvent(exampleNestCameraResponse)
 
-	dbEndpoint, _ := os.LookupEnv("NEST_DB_ENDPOINT")
 	db, err := gorm.Open("postgres", dbEndpoint)
 	if err != nil {
 		panic(err)

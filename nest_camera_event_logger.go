@@ -1,22 +1,37 @@
 package main
 
 import (
-	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"fmt"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"log"
 	"os"
 	"time"
 )
 
 func logNestCamEvent(nestCamResponse NestCameraResponse) {
-	dbEndpoint, present := os.LookupEnv("NEST_DB_ENDPOINT")
+	dbHost, present := os.LookupEnv("NEST_DB_HOST")
 	if !present {
 		log.Fatalln("NEST_DB_ENDPOINT not set. Please see README for more details.")
 	}
+	dbUser, present := os.LookupEnv("NEST_DB_USER")
+	if !present {
+		log.Fatalln("NEST_DB_USER not set. Please see README for more details.")
+	}
+	dbName, present := os.LookupEnv("NEST_DB_NAME")
+	if !present {
+		log.Fatalln("NEST_DB_NAME not set. Please see README for more details.")
+	}
+	dbPassword, present := os.LookupEnv("NEST_DB_PASSWORD")
+	if !present {
+		log.Fatalln("NEST_DB_PASSWORD not set. Please see README for more details.")
+	}
+
+	dbEndpoint := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s", dbHost, dbUser, dbName, dbPassword)
 
 	db, err := gorm.Open("postgres", dbEndpoint)
 	if err != nil {
-		panic("failed to connect database")
+		panic(err)
 	}
 	defer db.Close()
 

@@ -12,18 +12,32 @@ For more information on how to generate an access token, see: https://developers
 `NEST_CAMERA_ID`
 - The ID of the Nest Cam you want to monitor
 
-`NEST_DB_ENDPOINT`
-- The fully qualified endpoint of the mysql database.
-- Ex: `root:root@tcp(localhost:3306)/nest?parseTime=true`
+`NEST_DB_HOST`
+- Database host
+
+`NEST_DB_NAME`
+- Name of the database
+
+`NEST_DB_USER`
+- User of the database with write permissions
+
+`NEST_DB_PASSWORD`
+- Password of the above user
 
 ## Docker Compose
 Used to install dependent application services, like a Postgres database. See: https://docs.docker.com/compose/install/
 
-# Build
-
-```bash
+# Development
+## Do it all with `make`
+By default, this runs:
+```
+go fmt
+go vet
+golint
+go test
 go build
 ```
+See `Makefile` for more targets.
 
 # Test
 
@@ -36,7 +50,13 @@ docker-compose up
 Then:
 
 ```bash
-go test
+make test
+```
+
+# Build
+
+```bash
+make build
 ```
 
 # Run
