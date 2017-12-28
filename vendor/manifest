@@ -34,6 +34,14 @@
 			"notests": true
 		},
 		{
+			"importpath": "github.com/graphql-go/graphql",
+			"repository": "https://github.com/graphql-go/graphql",
+			"vcs": "git",
+			"revision": "9b5a661117d443fbf730f165e7424d7ae199856b",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "github.com/jinzhu/gorm",
 			"repository": "https://github.com/jinzhu/gorm",
 			"vcs": "git",
