@@ -19,8 +19,6 @@ For more information on how to generate an access token, see: https://developers
 # Build
 
 ```bash
-go get -u github.com/go-sql-driver/mysql
-go get -u github.com/jinzhu/gorm
 go build
 ```
 
