@@ -51,8 +51,13 @@ func main() {
 			return nil
 		},
 	}
-
 	queueHTTPRequest(customClient, *req)
+
+	http.HandleFunc("/graphql", func(w http.ResponseWriter, r *http.Request) {
+		result := executeQuery(r.URL.Query().Get("query"), schema)
+		json.NewEncoder(w).Encode(result)
+	})
+	http.ListenAndServe(":8080", nil)
 
 	interrupt := make(chan os.Signal)
 	signal.Notify(interrupt)

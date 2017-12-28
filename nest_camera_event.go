@@ -6,8 +6,8 @@ import (
 
 // NestCameraEvent struct to persist camera events
 type NestCameraEvent struct {
-	ID               uint `gorm:"primary_key"`
-	CreatedAt        time.Time
+	ID               uint       `gorm:"primary_key" json:"id"`
+	CreatedAt        time.Time  `json:"created_at"`
 	HasSound         bool       `json:"has_sound"`
 	HasMotion        bool       `json:"has_motion"`
 	HasPerson        bool       `json:"has_person"`

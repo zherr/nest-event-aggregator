@@ -1,6 +1,6 @@
 # Nest Event Aggregator
 
-A microservice that aggregates Nest cam activity and provides an HTTP REST interface to query this data.
+A service that aggregates Nest cam activity and provides a GraphQL interface to query this data.
 
 # Configuration
 ## Environment Variables

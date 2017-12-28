@@ -10,8 +10,6 @@ import (
 	"time"
 )
 
-const dbEndpoint = "host=localhost user=postgres dbname=postgres sslmode=disable password="
-
 func TestMain(m *testing.M) {
 	err := os.Setenv("NEST_DB_HOST", "localhost")
 	if err != nil {
@@ -42,6 +40,7 @@ func Test_logNestCamEvent(t *testing.T) {
 
 	logNestCamEvent(exampleNestCameraResponse)
 
+	dbEndpoint := "host=localhost user=postgres dbname=postgres sslmode=disable password="
 	db, err := gorm.Open("postgres", dbEndpoint)
 	if err != nil {
 		panic(err)
