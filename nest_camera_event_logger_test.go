@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/jinzhu/gorm"
 	"io/ioutil"
 	"os"
@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-const dbEndpoint = "root:root@tcp(localhost:3306)/nest_test?parseTime=true"
+const dbEndpoint = "host=localhost user=postgres dbname=postgres sslmode=disable password="
 
 func TestMain(m *testing.M) {
 	err := os.Setenv("NEST_DB_ENDPOINT", dbEndpoint)
@@ -31,9 +31,9 @@ func Test_logNestCamEvent(t *testing.T) {
 	logNestCamEvent(exampleNestCameraResponse)
 
 	dbEndpoint, _ := os.LookupEnv("NEST_DB_ENDPOINT")
-	db, err := gorm.Open("mysql", dbEndpoint)
+	db, err := gorm.Open("postgres", dbEndpoint)
 	if err != nil {
-		panic("failed to connect database")
+		panic(err)
 	}
 	defer db.Close()
 	defer db.Exec("TRUNCATE TABLE nest_camera_events;")

@@ -16,6 +16,9 @@ For more information on how to generate an access token, see: https://developers
 - The fully qualified endpoint of the mysql database.
 - Ex: `root:root@tcp(localhost:3306)/nest?parseTime=true`
 
+## Docker Compose
+Used to install dependent application services, like a Postgres database. See: https://docs.docker.com/compose/install/
+
 # Build
 
 ```bash
@@ -23,7 +26,14 @@ go build
 ```
 
 # Test
-Ensure `nest_test` database exists, then:
+
+In another terminal, run:
+
+```bash
+docker-compose up
+```
+
+Then:
 
 ```bash
 go test

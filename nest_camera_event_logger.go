@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/jinzhu/gorm"
 	"log"
 	"os"
@@ -14,7 +14,7 @@ func logNestCamEvent(nestCamResponse NestCameraResponse) {
 		log.Fatalln("NEST_DB_ENDPOINT not set. Please see README for more details.")
 	}
 
-	db, err := gorm.Open("mysql", dbEndpoint)
+	db, err := gorm.Open("postgres", dbEndpoint)
 	if err != nil {
 		panic("failed to connect database")
 	}
