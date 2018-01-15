@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	_ "github.com/joho/godotenv/autoload"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -65,12 +66,22 @@ func main() {
 }
 
 func queueHTTPRequest(client http.Client, request http.Request) {
-	ticker := time.NewTicker(time.Minute)
+	duration := time.Minute
+	tickTime, present := os.LookupEnv("NEST_TICK_TIME")
+	if present {
+		envDuration, err := time.ParseDuration(tickTime)
+		if err == nil {
+			duration = envDuration
+		}
+	}
+	ticker := time.NewTicker(duration)
+
 	quit := make(chan struct{})
 	go func() {
 		for {
 			select {
 			case <-ticker.C:
+				log.Printf("hit")
 				response, err := client.Do(&request)
 				if err != nil {
 					log.Fatalf("HTTP GET request failed: %s\n", err)

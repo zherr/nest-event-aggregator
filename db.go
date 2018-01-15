@@ -11,7 +11,7 @@ import (
 func getDbConnection() (*gorm.DB, error) {
 	dbHost, present := os.LookupEnv("NEST_DB_HOST")
 	if !present {
-		log.Fatalln("NEST_DB_ENDPOINT not set. Please see README for more details.")
+		log.Fatalln("NEST_DB_HOST not set. Please see README for more details.")
 	}
 	dbUser, present := os.LookupEnv("NEST_DB_USER")
 	if !present {
