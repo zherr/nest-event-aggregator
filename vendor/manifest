@@ -5,7 +5,7 @@
 			"importpath": "github.com/PuerkitoBio/goquery",
 			"repository": "https://github.com/PuerkitoBio/goquery",
 			"vcs": "git",
-			"revision": "bc4e06eb0792d1a14661d19dd7822163c25bb6bd",
+			"revision": "a41cf096e64e3752d7683898d5746bc0b98ee213",
 			"branch": "master",
 			"notests": true
 		},
@@ -21,15 +21,15 @@
 			"importpath": "github.com/denisenkom/go-mssqldb",
 			"repository": "https://github.com/denisenkom/go-mssqldb",
 			"vcs": "git",
-			"revision": "8a15d1bb0c8eaa4b870c016b312de5b50b493b4e",
+			"revision": "df1dd7185ab5a4b98222e0852c7f057fa00f6e1c",
 			"branch": "master",
 			"notests": true
 		},
 		{
-			"importpath": "github.com/golang/lint",
-			"repository": "https://github.com/golang/lint",
+			"importpath": "github.com/go-sql-driver/mysql",
+			"repository": "https://github.com/go-sql-driver/mysql",
 			"vcs": "git",
-			"revision": "f635bddafc7154957bd70209ee858a4b97e64a9b",
+			"revision": "2cc627ac8defc45d65066ae98f898166f580f9a4",
 			"branch": "master",
 			"notests": true
 		},
@@ -37,7 +37,7 @@
 			"importpath": "github.com/graphql-go/graphql",
 			"repository": "https://github.com/graphql-go/graphql",
 			"vcs": "git",
-			"revision": "9b5a661117d443fbf730f165e7424d7ae199856b",
+			"revision": "5e7dd4fc3e87341229fa03d8f79d2ab5455963fb",
 			"branch": "master",
 			"notests": true
 		},
@@ -58,6 +58,14 @@
 			"notests": true
 		},
 		{
+			"importpath": "github.com/joho/godotenv",
+			"repository": "https://github.com/joho/godotenv",
+			"vcs": "git",
+			"revision": "6bb08516677f8c8274c557fc801bee9ab564ab2c",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "github.com/lib/pq",
 			"repository": "https://github.com/lib/pq",
 			"vcs": "git",
@@ -69,7 +77,7 @@
 			"importpath": "github.com/mattn/go-sqlite3",
 			"repository": "https://github.com/mattn/go-sqlite3",
 			"vcs": "git",
-			"revision": "d5ffb5c0cca8778699a929b236766f4a7af674e8",
+			"revision": "6c771bb9887719704b210e87e934f08be014bdb1",
 			"branch": "master",
 			"notests": true
 		},
@@ -77,27 +85,18 @@
 			"importpath": "golang.org/x/crypto/md4",
 			"repository": "https://go.googlesource.com/crypto",
 			"vcs": "git",
-			"revision": "95a4943f35d008beabde8c11e5075a1b714e6419",
+			"revision": "13931e22f9e72ea58bb73048bc752b48c6d4d4ac",
 			"branch": "master",
 			"path": "/md4",
-			"notests": true
-		},
-		{
-			"importpath": "golang.org/x/net/context",
-			"repository": "https://go.googlesource.com/net",
-			"vcs": "git",
-			"revision": "d866cfc389cec985d6fda2859936a575a55a3ab6",
-			"branch": "master",
-			"path": "/context",
 			"notests": true
 		},
 		{
 			"importpath": "golang.org/x/net/html",
 			"repository": "https://go.googlesource.com/net",
 			"vcs": "git",
-			"revision": "d866cfc389cec985d6fda2859936a575a55a3ab6",
+			"revision": "5ccada7d0a7ba9aeb5d3aca8d3501b4c2a509fec",
 			"branch": "master",
-			"path": "html",
+			"path": "/html",
 			"notests": true
 		},
 		{
@@ -106,7 +105,7 @@
 			"vcs": "git",
 			"revision": "e19ae1496984b1c655b8044a65c0300a3c878dd3",
 			"branch": "master",
-			"path": "/encoding",
+			"path": "encoding",
 			"notests": true
 		},
 		{
@@ -179,33 +178,6 @@
 			"revision": "e19ae1496984b1c655b8044a65c0300a3c878dd3",
 			"branch": "master",
 			"path": "unicode/cldr",
-			"notests": true
-		},
-		{
-			"importpath": "golang.org/x/tools/go/gcexportdata",
-			"repository": "https://go.googlesource.com/tools",
-			"vcs": "git",
-			"revision": "f271d7a0f8cf389f3ee4f6bf8d68e716a60ea571",
-			"branch": "master",
-			"path": "/go/gcexportdata",
-			"notests": true
-		},
-		{
-			"importpath": "golang.org/x/tools/go/gcimporter15",
-			"repository": "https://go.googlesource.com/tools",
-			"vcs": "git",
-			"revision": "f271d7a0f8cf389f3ee4f6bf8d68e716a60ea571",
-			"branch": "master",
-			"path": "go/gcimporter15",
-			"notests": true
-		},
-		{
-			"importpath": "golang.org/x/tools/go/types/typeutil",
-			"repository": "https://go.googlesource.com/tools",
-			"vcs": "git",
-			"revision": "f271d7a0f8cf389f3ee4f6bf8d68e716a60ea571",
-			"branch": "master",
-			"path": "go/types/typeutil",
 			"notests": true
 		},
 		{
