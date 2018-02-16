@@ -93,6 +93,32 @@ var queryType = graphql.NewObject(
 					return nestCameraEvents, nil
 				},
 			},
+			"eventsBetween": &graphql.Field{
+				Type: graphql.NewList(nestCameraEventType),
+				Args: graphql.FieldConfigArgument{
+					"start": &graphql.ArgumentConfig{
+						Type: graphql.DateTime,
+					},
+					"end": &graphql.ArgumentConfig{
+						Type: graphql.DateTime,
+					},
+				},
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					start, startOK := p.Args["start"].(string)
+					end, endOK := p.Args["end"].(string)
+					if startOK && endOK {
+						db, err := getDbConnection()
+						if err != nil {
+							log.Fatal(err)
+						}
+						defer db.Close()
+						nestCameraEvents := []NestCameraEvent{}
+						db.Where("start_time BETWEEN ? AND ?", start, end).Find(&nestCameraEvents)
+						return nestCameraEvents, nil
+					}
+					return nil, nil
+				},
+			},
 		},
 	})
 

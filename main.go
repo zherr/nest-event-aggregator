@@ -81,7 +81,6 @@ func queueHTTPRequest(client http.Client, request http.Request) {
 		for {
 			select {
 			case <-ticker.C:
-				log.Printf("hit")
 				response, err := client.Do(&request)
 				if err != nil {
 					log.Fatalf("HTTP GET request failed: %s\n", err)
