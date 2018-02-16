@@ -39,7 +39,7 @@ func main() {
 	customClient := http.Client{
 		CheckRedirect: func(redirRequest *http.Request, via []*http.Request) error {
 			// Go's http.DefaultClient does not forward headers when a redirect 3xx
-			// response is recieved. Thus, the header (which in this case contains the
+			// response is received. Thus, the header (which in this case contains the
 			// Authorization token) needs to be passed forward to the redirect
 			// destinations.
 			redirRequest.Header = req.Header

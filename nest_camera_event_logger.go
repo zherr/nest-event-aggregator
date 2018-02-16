@@ -19,6 +19,9 @@ func logNestCamEvent(nestCamResponse NestCameraResponse) {
 	timeFormat := "2006-01-02 15:04:05"
 	startTimeStr := nestCamResponse.NestCameraEvent.StartTime.Format(timeFormat)
 	startTime, err := time.Parse(timeFormat, startTimeStr)
+	if err != nil {
+		panic(err)
+	}
 	notFound := db.Where(&NestCameraEvent{StartTime: startTime}).First(&existingEvent).RecordNotFound()
 	if notFound {
 		nestCamResponse.NestCameraEvent.StartTime = startTime
