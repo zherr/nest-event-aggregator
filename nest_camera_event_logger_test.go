@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"io/ioutil"
 	"os"
@@ -11,19 +10,7 @@ import (
 )
 
 func TestMain(m *testing.M) {
-	err := os.Setenv("NEST_DB_HOST", "localhost")
-	if err != nil {
-		panic(err)
-	}
-	err = os.Setenv("NEST_DB_NAME", "postgres")
-	if err != nil {
-		panic(err)
-	}
-	err = os.Setenv("NEST_DB_USER", "postgres")
-	if err != nil {
-		panic(err)
-	}
-	err = os.Setenv("NEST_DB_PASSWORD", "password")
+	err := os.Setenv("NEST_DB_NAME", "postgres")
 	if err != nil {
 		panic(err)
 	}
@@ -40,10 +27,9 @@ func Test_logNestCamEvent(t *testing.T) {
 
 	logNestCamEvent(exampleNestCameraResponse)
 
-	dbEndpoint := "host=localhost user=postgres dbname=postgres sslmode=disable password="
-	db, err := gorm.Open("postgres", dbEndpoint)
+	db, err := getDbConnection()
 	if err != nil {
-		panic(err)
+		t.Error(err)
 	}
 	defer db.Close()
 	defer db.Exec("TRUNCATE TABLE nest_camera_events;")

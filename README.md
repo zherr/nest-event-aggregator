@@ -2,9 +2,11 @@
 
 A service that aggregates Nest cam activity and provides a GraphQL interface to query this data.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/fwqruxgdp5p41d33/branch/master?svg=true)](https://ci.appveyor.com/project/zherr/nest-event-aggregator/branch/master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/zherr/nest-event-aggregator)](https://goreportcard.com/report/github.com/zherr/nest-event-aggregator)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![GoDoc](https://godoc.org/github.com/zherr/nest-event-aggregator?status.svg)](https://godoc.org/github.com/zherr/nest-event-aggregator)
+
 
 ## Configuration
 ### Environment Variables

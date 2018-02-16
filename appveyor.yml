@@ -1,0 +1,29 @@
+version: 1.0.{build}
+
+platform: x64
+
+branches:
+    only:
+        - master
+
+environment:
+    GOPATH: c:\gopath
+
+services:
+  - postgresql
+
+install:
+    - echo %PATH%
+    - echo %GOPATH%
+    - set PATH=%GOPATH%\bin;C:\go\bin;C:\Program Files\PostgreSQL\9.6\bin\;%PATH%
+    - go version
+    - go env
+    - set PGUSER=postgres
+    - set PGPASSWORD=Password12!
+
+build_script:
+    - go get -u github.com/graphql-go/graphql
+    - go get -u github.com/jinzhu/gorm
+    - go get -u github.com/joho/godotenv/autoload
+    - go get -u github.com/lib/pq
+    - go test -v -cover ./...
